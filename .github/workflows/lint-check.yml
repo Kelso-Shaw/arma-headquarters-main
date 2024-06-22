@@ -25,10 +25,10 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git diff --exit-code || echo "changes"
+          git diff --exit-code || echo "changes=true" >> $GITHUB_ENV
 
       - name: Commit changes if any
-        if: steps.check_changes.outputs.changes == 'changes'
+        if: env.changes == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
