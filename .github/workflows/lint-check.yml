@@ -54,4 +54,4 @@ jobs:
           git commit -m "chore: format code automatically at ${timestamp}" || exit 0
           git push origin HEAD:${{ github.head_ref }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
