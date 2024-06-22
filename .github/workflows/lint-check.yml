@@ -25,28 +25,13 @@ jobs:
       - name: Run lint formatter
         run: npm run lint:write
 
-      - name: Check for changes
-        id: check_changes
-        run: |
-          git diff --exit-code || echo "changes=true" >> $GITHUB_ENV
-
-      - name: Get branch name
-        id: get_branch
-        run: echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
-
-      - name: Pull latest changes
-        if: env.changes == 'true'
-        run: git pull origin ${{ env.branch }} --rebase
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-
-      - name: Commit changes if any
-        if: env.changes == 'true'
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "chore: format code automatically"
-          git push origin HEAD:${{ env.branch }}
+      - name: Commit and push if content changed
+        run: |-
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "BiomeJS: ${timestamp}" || exit 0
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
