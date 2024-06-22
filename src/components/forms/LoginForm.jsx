@@ -1,19 +1,12 @@
 import { LockOutlined } from "@mui/icons-material";
-import {
-	Avatar,
-	Box,
-	Button,
-	Paper,
-	TextField,
-	Typography,
-} from "@mui/material";
+import { Avatar, Box, Paper, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { FormButton } from "../buttons/FormButton";
 
-const LoginForm = ({ handleClose }) => {
-	const { auth, login } = useAuth();
+const LoginForm = ({ handleClose, registerButton }) => {
+	const { auth, login, register } = useAuth();
 	const [username, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
@@ -30,7 +23,9 @@ const LoginForm = ({ handleClose }) => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const result = await login(username, password);
+		const result = registerButton
+			? await register(username, password)
+			: await login(username, password);
 		if (!result.success) {
 			return;
 		}
@@ -58,7 +53,7 @@ const LoginForm = ({ handleClose }) => {
 					<LockOutlined />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Sign In
+					{registerButton ? "Register" : "Sign-In"}
 				</Typography>
 				<Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
 					<TextField
@@ -84,7 +79,7 @@ const LoginForm = ({ handleClose }) => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<FormButton />
+					<FormButton registerButton={registerButton} />
 				</Box>
 			</Box>
 		</Paper>

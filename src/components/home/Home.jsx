@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../layouts/Layout";
 import ActionGroup from "./assets/ActionGroup";
 import { Paper, Typography, Grid } from "@mui/material";
-
 export const Home = () => {
 	return (
 		<Layout hideButton>
@@ -12,7 +11,6 @@ export const Home = () => {
 						{process.env.REACT_APP_CLAN_NAME}
 					</Typography>
 					<Paper
-						container
 						variant="outlined"
 						elevation={0}
 						sx={{

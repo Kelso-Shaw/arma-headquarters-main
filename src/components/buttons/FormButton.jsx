@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 
-export const FormButton = () => {
+export const FormButton = ({ registerButton }) => {
 	return (
 		<Button
 			type="submit"
@@ -12,7 +12,7 @@ export const FormButton = () => {
 				mb: 2,
 			}}
 		>
-			<Typography>Sign In</Typography>
+			<Typography>{registerButton ? "Register" : "Sign-In"}</Typography>
 		</Button>
 	);
 };

@@ -21,7 +21,8 @@ import ThemeButton from "./buttons/ThemeButton";
 import Dialog from "@mui/material/Dialog";
 import LoginForm from "./forms/LoginForm";
 
-function Nav({ name }) {
+function Nav({ name, settings }) {
+	const [registerButton, setRegister] = useState(false);
 	const { auth } = useAuth();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const navigate = useNavigate();
@@ -52,6 +53,8 @@ function Nav({ name }) {
 		setOpen(false);
 	};
 
+	console.log(settings);
+
 	const drawerList = () => (
 		<Box
 			sx={{ width: 250 }}
@@ -68,7 +71,7 @@ function Nav({ name }) {
 				</ListItemButton>
 				{auth.isAuthenticated ? (
 					<>
-						<ListItemButton>
+						<ListItemButton onClick={() => navigate("/profile")}>
 							<ListItemIcon>
 								<SettingsIcon />
 							</ListItemIcon>
@@ -89,19 +92,49 @@ function Nav({ name }) {
 						</ListItemButton>
 					</>
 				) : (
-					<ListItemButton
-						sx={{
-							position: "fixed",
-							bottom: 0,
-							width: 250,
-						}}
-						onClick={handleClickOpen}
-					>
-						<ListItemIcon>
-							<Login />
-						</ListItemIcon>
-						<ListItemText primary="Login" />
-					</ListItemButton>
+					<>
+						{settings.map((setting) => {
+							if (setting.setting === "Registering" && setting.status === 1) {
+								return (
+									<ListItemButton
+										key={setting.id}
+										sx={{
+											position: "fixed",
+											bottom: 50,
+											width: 250,
+										}}
+										onClick={() => {
+											handleClickOpen();
+											setRegister(true);
+										}}
+									>
+										<ListItemIcon>
+											<Login />
+										</ListItemIcon>
+										<ListItemText primary="Register" />
+									</ListItemButton>
+								);
+							}
+							return;
+						})}
+
+						<ListItemButton
+							sx={{
+								position: "fixed",
+								bottom: 0,
+								width: 250,
+							}}
+							onClick={() => {
+								handleClickOpen();
+								setRegister(false);
+							}}
+						>
+							<ListItemIcon>
+								<Login />
+							</ListItemIcon>
+							<ListItemText primary="Login" />
+						</ListItemButton>
+					</>
 				)}
 			</List>
 		</Box>
@@ -138,7 +171,7 @@ function Nav({ name }) {
 				{drawerList()}
 			</Drawer>
 			<Dialog onClose={handleClose} open={open}>
-				<LoginForm handleClose={handleClose} />
+				<LoginForm handleClose={handleClose} registerButton={registerButton} />
 			</Dialog>
 		</Box>
 	);

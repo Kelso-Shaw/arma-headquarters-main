@@ -15,8 +15,8 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		const expiration = localStorage.getItem("tokenExpiration");
-		const role = +localStorage.getItem("role");
-		const id = +localStorage.getItem("id");
+		const role = localStorage.getItem("role");
+		const id = localStorage.getItem("id");
 		const isTokenExpired =
 			expiration && new Date().getTime() > Number(expiration);
 
@@ -52,7 +52,37 @@ export const AuthProvider = ({ children }) => {
 			setAuth({
 				isAuthenticated: true,
 				token: response.accessToken,
-				rank: response.rank,
+				role: response.rank,
+				id: response.id,
+				username: response.username,
+			});
+			localStorage.setItem("token", response.accessToken);
+			localStorage.setItem("tokenExpiration", expirationTime);
+			localStorage.setItem("rank", response.rank);
+			localStorage.setItem("id", response.id);
+			localStorage.setItem("username", response.username);
+
+			return { success: true };
+		} catch (error) {
+			return { success: false, message: error.message };
+		}
+	};
+
+	const register = async (username, password, role) => {
+		try {
+			const response = await apiRequest(
+				"players/register",
+				"POST",
+				{ username, password, role },
+				null,
+			);
+
+			const expirationTime = new Date().getTime() + TOKEN_EXPIRATION_TIME;
+
+			setAuth({
+				isAuthenticated: true,
+				token: response.accessToken,
+				role: response.rank,
 				id: response.id,
 				username: response.username,
 			});
@@ -77,7 +107,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ auth, login, logout }}>
+		<AuthContext.Provider value={{ auth, login, logout, register }}>
 			{children}
 		</AuthContext.Provider>
 	);
