@@ -13,7 +13,8 @@ export const Home = () => {
 					</Typography>
 					<Paper
 						container
-						elevation={3}
+						variant="outlined"
+						elevation={0}
 						sx={{
 							padding: 2,
 							display: "flex",

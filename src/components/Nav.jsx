@@ -18,6 +18,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import ThemeButton from "./buttons/ThemeButton";
+import Dialog from "@mui/material/Dialog";
+import LoginForm from "./forms/LoginForm";
 
 function Nav({ name }) {
 	const { auth } = useAuth();
@@ -40,6 +42,16 @@ function Nav({ name }) {
 		navigate("/");
 	};
 
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const [open, setOpen] = useState(false);
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
 	const drawerList = () => (
 		<Box
 			sx={{ width: 250 }}
@@ -57,12 +69,19 @@ function Nav({ name }) {
 				{auth.isAuthenticated ? (
 					<>
 						<ListItemButton>
-							<SettingsIcon>
-								<LogoutIcon />
-							</SettingsIcon>
+							<ListItemIcon>
+								<SettingsIcon />
+							</ListItemIcon>
 							<ListItemText primary="Profile" />
 						</ListItemButton>
-						<ListItemButton onClick={handleLogout}>
+						<ListItemButton
+							sx={{
+								position: "fixed",
+								bottom: 0,
+								width: 250,
+							}}
+							onClick={handleLogout}
+						>
 							<ListItemIcon>
 								<LogoutIcon />
 							</ListItemIcon>
@@ -76,6 +95,7 @@ function Nav({ name }) {
 							bottom: 0,
 							width: 250,
 						}}
+						onClick={handleClickOpen}
 					>
 						<ListItemIcon>
 							<Login />
@@ -117,6 +137,9 @@ function Nav({ name }) {
 			<Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
 				{drawerList()}
 			</Drawer>
+			<Dialog onClose={handleClose} open={open}>
+				<LoginForm handleClose={handleClose} />
+			</Dialog>
 		</Box>
 	);
 }
