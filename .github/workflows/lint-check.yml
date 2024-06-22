@@ -32,7 +32,13 @@ jobs:
 
       - name: Get branch name
         id: get_branch
-        run: echo "branch=$(echo $GITHUB_HEAD_REF)" >> $GITHUB_ENV
+        run: echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
+
+      - name: Pull latest changes
+        if: env.changes == 'true'
+        run: git pull origin ${{ env.branch }} --rebase
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Commit changes if any
         if: env.changes == 'true'
