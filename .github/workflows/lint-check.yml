@@ -21,19 +21,3 @@ jobs:
 
       - name: Run lint formatter
         run: npm run lint:write
-
-      - name: Check for changes
-        id: check_changes
-        run: |
-          git diff --exit-code || echo "changes"
-
-      - name: Commit changes if any
-        if: steps.check_changes.outputs.changes == 'changes'
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "chore: format code automatically"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
