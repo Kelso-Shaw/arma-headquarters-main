@@ -3,12 +3,7 @@ name: Lint Check
 on:
   pull_request:
     branches:
-      - main
-  push:
-    branches:
-      - main
       - feature/*
-      - develop
 
 jobs:
   lint-check:
