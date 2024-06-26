@@ -43,17 +43,15 @@ function Nav({ name, settings }) {
 		navigate("/");
 	};
 
+	const [open, setOpen] = useState(false);
+
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
 
-	const [open, setOpen] = useState(false);
-
 	const handleClose = () => {
 		setOpen(false);
 	};
-
-	console.log(settings);
 
 	const drawerList = () => (
 		<Box

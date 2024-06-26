@@ -9,13 +9,15 @@ const HomeCards = ({ title, text, link, buttonText, linkRef }) => {
 				variant="outlined"
 				sx={{
 					minHeight: "200px",
-					maxHeight: "200px",
+					maxHeight: "500px",
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "space-between",
 					textAlign: "center",
 					padding: 1,
 					borderRadius: 5,
+					marginBottom: 1.2,
+					paddingBottom: 2,
 				}}
 			>
 				<div>

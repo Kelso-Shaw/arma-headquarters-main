@@ -5,6 +5,7 @@ import { ThemeToggleProvider } from "./ThemeContext";
 import Nav from "./components/Nav";
 import Home from "./components/home/Home";
 import { getSettings } from "./components/funcs/common/getSettings";
+import Footer from "./components/Footer";
 
 function App() {
 	const [settings, setSettings] = useState([]);
@@ -30,7 +31,6 @@ function App() {
 							justifyContent: "center",
 							alignItems: "center",
 							width: "100%",
-							flex: 1,
 							padding: 10,
 						}}
 					>
@@ -38,6 +38,7 @@ function App() {
 							<Route element={<Home />} path="/" />
 						</Routes>
 					</div>
+					<Footer />
 				</Router>
 			</AuthProvider>
 		</ThemeToggleProvider>
