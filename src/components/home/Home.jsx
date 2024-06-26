@@ -64,7 +64,13 @@ const Home = () => {
 								}}
 							>
 								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
+									sx={{
+										width: 56,
+										height: 56,
+										mx: "auto",
+										mb: 2,
+										color: "text.title",
+									}}
 									src="/path/to/icon1.jpg"
 								/>
 								<Typography variant="h6" sx={{ mb: 1 }}>
@@ -91,7 +97,13 @@ const Home = () => {
 								}}
 							>
 								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
+									sx={{
+										width: 56,
+										height: 56,
+										mx: "auto",
+										mb: 2,
+										color: "text.title",
+									}}
 									src="/path/to/icon2.jpg"
 								/>
 								<Typography variant="h6" sx={{ mb: 1 }}>
@@ -118,7 +130,13 @@ const Home = () => {
 								}}
 							>
 								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
+									sx={{
+										width: 56,
+										height: 56,
+										mx: "auto",
+										mb: 2,
+										color: "text.title",
+									}}
 									src="/path/to/icon3.jpg"
 								/>
 								<Typography variant="h6" sx={{ mb: 1 }}>
@@ -145,7 +163,13 @@ const Home = () => {
 								}}
 							>
 								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
+									sx={{
+										width: 56,
+										height: 56,
+										mx: "auto",
+										mb: 2,
+										color: "text.title",
+									}}
 									src="/path/to/icon4.jpg"
 								/>
 								<Typography variant="h6" sx={{ mb: 1 }}>
@@ -158,113 +182,6 @@ const Home = () => {
 								<Button variant="outlined" color="primary">
 									Read more
 								</Button>
-							</Paper>
-						</Grid>
-					</Grid>
-				</Box>
-
-				<Box sx={{ mt: 5 }}>
-					<Typography variant="h4" sx={{ mb: 3 }}>
-						Testimonials
-					</Typography>
-					<Grid container spacing={4} justifyContent="center">
-						<Grid item xs={12} md={4}>
-							<Paper
-								variant="outlined"
-								elevation={3}
-								sx={{
-									padding: 3,
-									borderRadius: 3,
-									backgroundColor: "background.paper",
-									textAlign: "center",
-									minHeight: "225px",
-									maxHeight: "225px",
-									overflow: "auto",
-								}}
-							>
-								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
-									src="/path/to/avatar1.jpg"
-								/>
-								<Typography
-									variant="body1"
-									sx={{ color: "text.primary", mb: 1 }}
-								>
-									"Joining this community has been a life-changing experience.
-									The missions are exciting and the people are amazing!"
-								</Typography>
-								<Typography
-									variant="subtitle2"
-									sx={{ color: "text.secondary" }}
-								>
-									- Member 1
-								</Typography>
-							</Paper>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<Paper
-								variant="outlined"
-								elevation={3}
-								sx={{
-									padding: 3,
-									borderRadius: 3,
-									backgroundColor: "background.paper",
-									textAlign: "center",
-									minHeight: "225px",
-									maxHeight: "225px",
-									overflow: "auto",
-								}}
-							>
-								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
-									src="/path/to/avatar2.jpg"
-								/>
-								<Typography
-									variant="body1"
-									sx={{ color: "text.primary", mb: 1 }}
-								>
-									"A great place to meet like-minded individuals and participate
-									in thrilling missions!"
-								</Typography>
-								<Typography
-									variant="subtitle2"
-									sx={{ color: "text.secondary" }}
-								>
-									- Member 2
-								</Typography>
-							</Paper>
-						</Grid>
-						<Grid item xs={12} md={4}>
-							<Paper
-								variant="outlined"
-								elevation={3}
-								sx={{
-									padding: 3,
-									borderRadius: 3,
-									backgroundColor: "background.paper",
-									textAlign: "center",
-									minHeight: "225px",
-									maxHeight: "225px",
-									overflow: "auto",
-								}}
-							>
-								<Avatar
-									sx={{ width: 56, height: 56, mx: "auto", mb: 2 }}
-									src="/path/to/avatar3.jpg"
-								/>
-								<Typography
-									variant="body1"
-									sx={{ color: "text.primary", mb: 1 }}
-								>
-									"The best community I've ever been a part of. Highly recommend
-									joining!"
-								</Typography>
-								<Typography
-									variant="subtitle2"
-									sx={{ color: "text.secondary" }}
-								>
-									- Member 3
-								</Typography>
 							</Paper>
 						</Grid>
 					</Grid>

@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import Home from "./components/home/Home";
 import { getSettings } from "./components/funcs/common/getSettings";
 import Footer from "./components/Footer";
+import { Box, padding } from "@mui/system";
 
 function App() {
 	const [settings, setSettings] = useState([]);
@@ -24,20 +25,19 @@ function App() {
 			<AuthProvider>
 				<Router>
 					<Nav name={clanName} settings={settings} />
-					<div
-						style={{
+					<Box
+						sx={{
 							display: "flex",
 							flexDirection: "column",
-							justifyContent: "center",
+							minHeight: "100vh",
 							alignItems: "center",
-							width: "100%",
-							padding: 10,
+							justifyContent: "center",
 						}}
 					>
 						<Routes>
 							<Route element={<Home />} path="/" />
 						</Routes>
-					</div>
+					</Box>
 					<Footer />
 				</Router>
 			</AuthProvider>
